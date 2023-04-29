@@ -66,7 +66,6 @@ class AppTextFormField extends StatelessWidget {
           initialValue: initialValue,
           onChanged: onChanged,
           obscureText: secure ?? false,
-          // obscuringCharacter: '◉',
           style: const TextStyle(color: Colors.black),
           decoration: InputDecoration(
             fillColor: AppColor.lightblue,
@@ -77,7 +76,7 @@ class AppTextFormField extends StatelessWidget {
                 const EdgeInsets.only(left: 10.0, right: 0.0, top: 12),
             hintText: hintText,
             hintStyle: const TextStyle(fontSize: 14, color: Colors.grey),
-            focusedBorder: UnderlineInputBorder(
+            focusedBorder: const UnderlineInputBorder(
               borderSide: BorderSide(
                 color: Colors.blue,
               ),

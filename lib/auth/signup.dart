@@ -36,9 +36,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Text('SmartED',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w600),),
+                      const Text(
+                        'SmartED',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.w600),
+                      ),
                       Text(
                         'Your Study Buddy to Learn and Earn...',
                         style: TextStyle(
@@ -97,7 +99,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         validator: (value) {
                           Pattern pattern =
                               r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                          RegExp regex = RegExp(pattern.toString());
+                          RegExp regex = RegExp(
+                            pattern.toString(),
+                          );
                           if (!regex.hasMatch(value!)) {
                             return 'Invalid email address';
                           } else {
@@ -167,10 +171,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: 20,
                       ),
                       GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/login');
-                          },
-                          child: const Text('Already have an account? Sign In'))
+                        onTap: () {
+                          Navigator.pushNamed(context, '/login');
+                        },
+                        child: const Text('Already have an account? Sign In'),
+                      ),
                     ],
                   ),
                 ),
