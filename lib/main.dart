@@ -8,19 +8,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
- 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Smart ED',
       theme: ThemeData(
         useMaterial3: true,
-       colorSchemeSeed: Colors.blue,
-       
+        colorSchemeSeed: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
       routes: AppRoutes().routes,
     );
   }
 }
-
