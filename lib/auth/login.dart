@@ -96,7 +96,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width - 20,
                       height: 48.0,
-                      child: AppButton(onPressed: () {}, text: 'Login'),
+                      child: AppButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/dashboard');
+                          },
+                          text: 'Login'),
                     ),
                   ],
                 ),
