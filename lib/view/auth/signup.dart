@@ -130,8 +130,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Empty field detected';
-                          } else if (value.length < 6) {
-                            return '6 characters or more required';
+                          } else if (value.length < 8) {
+                            return '8 characters or more required';
                           } else {
                             return null;
                           }
@@ -164,22 +164,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                       ),
                       const SizedBox(height: 80),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width - 20,
-                        height: 48.0,
-                        child: Consumer<AuthService>(
-                          builder: (context, snap, child) {
-                            return AppButton(
-                              onPressed: () {},
+                      Consumer<AuthService>(
+                        builder: (context, snap, child) {
+                          if (snap.isLoading) {
+                            return const CircularProgressIndicator();
+                          }
+                          return SizedBox(
+                            width: MediaQuery.of(context).size.width - 20,
+                            height: 48.0,
+                            child: AppButton(
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  snap.register(
+                                    context,
+                                    email: _email.text,
+                                    pass: _passwordd.text,
+                                    fname: _fullname.text,
+                                    uname: _username.text,
+                                  );
+                                }
+                              },
                               text: 'Sign Up',
-                            );
-                          },
-                        ),
+                            ),
+                          );
+                        },
                       ),
                       const SizedBox(height: 20),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, loginRoute);
+                          Navigator.pushNamed(context, dashboardRoute);
                         },
                         child: const Text('Already have an account? Sign In'),
                       ),
@@ -192,5 +205,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

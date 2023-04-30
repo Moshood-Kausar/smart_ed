@@ -1,13 +1,13 @@
 // To parse this JSON data, do
 //
-//     final userInfoModel = userInfoModelFromJson(jsonString);
+//     final userInfoModel = userInfoModelFromJson(jsondynamic);
 
 import 'dart:convert';
 
-UserInfoModel userInfoModelFromJson(String str) =>
+UserInfoModel userInfoModelFromJson(dynamic str) =>
     UserInfoModel.fromJson(json.decode(str));
 
-String userInfoModelToJson(UserInfoModel data) => json.encode(data.toJson());
+dynamic userInfoModelToJson(UserInfoModel data) => json.encode(data.toJson());
 
 class UserInfoModel {
   Profile profile;
@@ -16,28 +16,28 @@ class UserInfoModel {
     required this.profile,
   });
 
-  factory UserInfoModel.fromJson(Map<String, dynamic> json) => UserInfoModel(
+  factory UserInfoModel.fromJson(Map<dynamic, dynamic> json) => UserInfoModel(
         profile: Profile.fromJson(json["profile"]),
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<dynamic, dynamic> toJson() => {
         "profile": profile.toJson(),
       };
 }
 
 class Profile {
-  String username;
-  String fullname;
-  String email;
-  String phoneNumber;
-  String aboutMe;
-  String profilePhoto;
-  String gender;
-  String school;
-  String course;
-  String country;
-  String city;
-  String? detail;
+  dynamic username;
+  dynamic fullname;
+  dynamic email;
+  dynamic phoneNumber;
+  dynamic aboutMe;
+  dynamic profilePhoto;
+  dynamic gender;
+  dynamic school;
+  dynamic course;
+  dynamic country;
+  dynamic city;
+  dynamic detail;
 
   Profile({
     required this.username,
@@ -54,22 +54,22 @@ class Profile {
     this.detail,
   });
 
-  factory Profile.fromJson(Map<String, dynamic> json) => Profile(
-        username: json["username"],
-        fullname: json["fullname"],
-        email: json["email"],
-        phoneNumber: json["phone_number"],
-        aboutMe: json["about_me"],
-        profilePhoto: json["profile_photo"],
-        gender: json["gender"],
-        school: json["school"],
-        course: json["course"],
-        country: json["country"],
-        city: json["city"],
+  factory Profile.fromJson(Map<dynamic, dynamic> json) => Profile(
+        username: json["username"] ?? '',
+        fullname: json["fullname"] ?? '',
+        email: json["email"] ?? '',
+        phoneNumber: json["phone_number"] ?? '',
+        aboutMe: json["about_me"] ?? '',
+        profilePhoto: json["profile_photo"] ?? '',
+        gender: json["gender"] ?? '',
+        school: json["school"] ?? '',
+        course: json["course"] ?? '',
+        country: json["country"] ?? '',
+        city: json["city"] ?? '',
         detail: json["detail"],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<dynamic, dynamic> toJson() => {
         "username": username,
         "fullname": fullname,
         "email": email,
