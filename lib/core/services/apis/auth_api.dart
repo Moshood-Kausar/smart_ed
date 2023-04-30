@@ -62,7 +62,7 @@ class AuthService extends ChangeNotifier {
       onResponse: (response) {
         AuthModel data = AuthModel.fromJson(response.data);
         stoploading();
-        if (data.detail != null) {
+        if (data.detail == null) {
           var box = Hive.box(infobox);
           box.put('access', data.access);
           box.put('refresh', data.refresh);
@@ -86,7 +86,7 @@ class AuthService extends ChangeNotifier {
       onResponse: (response) {
         UserInfoModel data = UserInfoModel.fromJson(response.data);
         stoploading();
-        if (data.profile.detail != null) {
+        if (data.profile.detail == null) {
           var box = Hive.box(infobox);
           box.put('username', data.profile.username);
           box.put('fullname', data.profile.fullname);
@@ -108,7 +108,7 @@ class AuthService extends ChangeNotifier {
       },
       onError: (resp, {error}) {
         stoploading();
-        AppFunctions().showSnackbar(context, error);
+        AppFunctions().showSnackbar(context, resp.message);
       },
     );
   }
