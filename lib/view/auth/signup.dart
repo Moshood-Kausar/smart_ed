@@ -192,7 +192,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       const SizedBox(height: 20),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, dashboardRoute);
+                          Navigator.pushNamed(context, loginRoute);
                         },
                         child: const Text('Already have an account? Sign In'),
                       ),

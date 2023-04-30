@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -75,15 +76,17 @@ Future postRequest({
       onError(ApiResponse(message: nointernet, status: false));
     }
   } on DioError catch (e) {
-    // print('this is type $type');
-    // print('sfsfs $e');
-    // print('this is a new one ${e.response}');
-    // print('this is a new one ${e.response!.data}');
+    log('this is type $type');
+    log('sfsfs $e');
+    log('this is a new one ${e.response}');
+    log('this is a new one ${e.response!.data}');
     onError(
       ApiResponse(
         message: e.response != null
             ? type == 'register'
-                ? "${e.response!.data}"
+                ? e.response!.data.contains('html')
+                    ? 'An error occured.'
+                    : "${e.response!.data}"
                 : "${e.response!.data['detail']}"
             : e.message ?? 'An error occured, try again',
         status: false,

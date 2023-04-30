@@ -20,9 +20,10 @@ class ApiInterceptors extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     var box = Hive.box(infobox).listenable();
-    String accessToken = box.value.get('access', defaultValue: 'default value');
-
-    options.headers['Authorization'] = 'Bearer $accessToken';
+    String accessToken = box.value.get('access', defaultValue: 'defaultvalue');
+    if (accessToken != 'defaultvalue') {
+      options.headers['Authorization'] = 'Bearer $accessToken';
+    }
 
     return handler.next(options);
   }
