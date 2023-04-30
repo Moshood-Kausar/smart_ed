@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:smart_ed/widget/appcolor.dart';
 import 'package:smart_ed/widget/text_form.dart';
-import 'package:flutter_tesseract_ocr/flutter_tesseract_ocr.dart';
+// import 'package:flutter_tesseract_ocr/flutter_tesseract_ocr.dart';
 
 class NewCourse extends StatefulWidget {
   const NewCourse({super.key});
@@ -138,9 +138,9 @@ class _NewCourseState extends State<NewCourse> {
                             });
                             _pickedImage = await picker.pickImage(
                                 source: ImageSource.gallery);
-                            _extractText =
-                                await FlutterTesseractOcr.extractText(
-                                    _pickedImage!.path);
+                            // _extractText =
+                            //     await FlutterTesseractOcr.extractText(
+                            //         _pickedImage!.path);
                             log(_extractText);
                             log(_pickedImage!.path);
 
