@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_tesseract_ocr/flutter_tesseract_ocr.dart';
+// import 'package:flutter_tesseract_ocr/flutter_tesseract_ocr.dart';
 import 'package:image_picker/image_picker.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool _scanning = false;
-  String _extractText = '';
+  final String _extractText = '';
   XFile? _pickedImage;
   final ImagePicker picker = ImagePicker();
 
@@ -62,8 +62,8 @@ class _HomePageState extends State<HomePage> {
                 });
                 _pickedImage =
                     await picker.pickImage(source: ImageSource.gallery);
-                _extractText =
-                    await FlutterTesseractOcr.extractText(_pickedImage!.path);
+                // _extractText =
+                //     await FlutterTesseractOcr.extractText(_pickedImage!.path);
                 setState(() {
                   _scanning = false;
                 });
@@ -88,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-          )
+          ),
         ],
       ),
     );

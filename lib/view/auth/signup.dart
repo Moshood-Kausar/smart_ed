@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:smart_ed/core/services/apis/auth_api.dart';
 import 'package:smart_ed/utils/approutes.dart';
 import 'package:smart_ed/widget/app_button.dart';
 import 'package:smart_ed/widget/appcolor.dart';
@@ -20,6 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _password = TextEditingController();
   final TextEditingController _passwordd = TextEditingController();
   bool btnLoad = false, _hideshoww = true, _hideShow = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,12 +43,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       const Text(
                         'SmartED',
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w600),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       Text(
                         'Your Study Buddy to Learn and Earn...',
                         style: TextStyle(
-                            fontStyle: FontStyle.italic, color: AppColor.grey),
+                          fontStyle: FontStyle.italic,
+                          color: AppColor.grey,
+                        ),
                       ),
                     ],
                   ),
@@ -54,9 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      const SizedBox(
-                        height: 35,
-                      ),
+                      const SizedBox(height: 35),
                       AppTextFormField(
                         controller: _username,
                         text: 'Username',
@@ -72,9 +77,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           }
                         },
                       ),
-                      const SizedBox(
-                        height: 24,
-                      ),
+                      const SizedBox(height: 24),
                       AppTextFormField(
                         controller: _fullname,
                         text: 'Full name',
@@ -100,9 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         validator: (value) {
                           Pattern pattern =
                               r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-                          RegExp regex = RegExp(
-                            pattern.toString(),
-                          );
+                          RegExp regex = RegExp(pattern.toString());
                           if (!regex.hasMatch(value!)) {
                             return 'Invalid email address';
                           } else {
@@ -166,7 +167,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width - 20,
                         height: 48.0,
-                        child: AppButton(onPressed: () {}, text: 'Sign Up'),
+                        child: Consumer<AuthService>(
+                          builder: (context, snap, child) {
+                            return AppButton(
+                              onPressed: () {},
+                              text: 'Sign Up',
+                            );
+                          },
+                        ),
                       ),
                       const SizedBox(height: 20),
                       GestureDetector(
