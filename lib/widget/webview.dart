@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class AppWebView extends StatefulWidget {
-  final String url , title;
-   AppWebView({super.key, required this.url, required this.title});
+  final String url, title;
+  const AppWebView({super.key, required this.url, required this.title});
 
   @override
   State<AppWebView> createState() => _AppWebViewState();
@@ -29,6 +29,7 @@ class _AppWebViewState extends State<AppWebView> {
     ),
     ios: IOSInAppWebViewOptions(allowsInlineMediaPlayback: true),
   );
+  @override
   void initState() {
     super.initState();
     pullToRefreshController = PullToRefreshController(
@@ -48,9 +49,8 @@ class _AppWebViewState extends State<AppWebView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:Text(widget.title)),
+      appBar: AppBar(title: Text(widget.title)),
       body: InAppWebView(
-        
         key: webViewKey,
         initialUrlRequest: URLRequest(url: Uri.parse(widget.url)),
         initialOptions: options,
@@ -87,5 +87,22 @@ class _AppWebViewState extends State<AppWebView> {
         },
       ),
     );
+  }
+}
+
+class OpenWebsite extends ChromeSafariBrowser {
+  @override
+  void onOpened() {
+    debugPrint("ChromeSafari browser opened");
+  }
+
+  @override
+  void onCompletedInitialLoad() {
+    debugPrint("ChromeSafari browser initial load completed");
+  }
+
+  @override
+  void onClosed() {
+    debugPrint("ChromeSafari browser closed");
   }
 }

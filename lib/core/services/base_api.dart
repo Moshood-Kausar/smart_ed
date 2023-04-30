@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:smart_ed/core/services/api_client.dart';
 
-const Duration timeOut = Duration(seconds: 90);
+const Duration timeOut = Duration(seconds: 40);
 Client _client = Client();
 const String nointernet = "No internet connection";
 const String timeMsg = "Request timeout, connect to a better network";
@@ -13,13 +13,19 @@ const String apiKey = "7c760c888117450f9ac628d1e86a7517";
 
 Future getRequest({
   required String url,
+  String? baseUrl,
   required void Function(Response response) onResponse,
   required void Function(ApiResponse response, {dynamic error}) onError,
 }) async {
   try {
     final result = await InternetAddress.lookup('google.com');
     if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-      final response = await _client.init().get(url);
+      final dio = _client.init();
+
+      if (baseUrl != null) {
+        dio.options.baseUrl = baseUrl;
+      }
+      final response = await dio.get(url);
       onResponse(response);
     } else {
       onError(ApiResponse(message: nointernet, status: false));

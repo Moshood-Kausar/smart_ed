@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smart_ed/utils/widget/app_button.dart';
-import 'package:smart_ed/utils/widget/appcolor.dart';
+import 'package:smart_ed/widget/app_button.dart';
+import 'package:smart_ed/widget/appcolor.dart';
 
-import '../../utils/widget/text_form.dart';
+import '../../widget/text_form.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

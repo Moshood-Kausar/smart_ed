@@ -3,7 +3,7 @@ import 'package:smart_ed/view/screens/homepage.dart';
 import 'package:smart_ed/view/screens/learn_earn.dart';
 import 'package:smart_ed/view/screens/scholarship.dart';
 import 'package:smart_ed/view/screens/settings.dart';
-import 'package:smart_ed/utils/widget/appcolor.dart';
+import 'package:smart_ed/widget/appcolor.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({super.key});
@@ -16,11 +16,10 @@ class _DashBoardState extends State<DashBoard> {
   int currentIndex = 0;
   final List<Widget> screens = [
     const HomePage(),
-    Scholarship(),
+    const Scholarship(),
     const LearnToEarn(),
-    Settings()
+    const Settings()
   ];
-  bool loading = true;
 
   @override
   Widget build(BuildContext context) {
