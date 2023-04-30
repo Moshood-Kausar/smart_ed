@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:smart_ed/core/function/functions.dart';
 import 'package:smart_ed/core/models/auth_models/auth_model.dart';
+import 'package:smart_ed/core/models/auth_models/register_model.dart';
 import 'package:smart_ed/core/models/auth_models/userinfo_model.dart';
 import 'package:smart_ed/core/services/base_api.dart';
 import 'package:smart_ed/utils/approutes.dart';
@@ -24,27 +25,35 @@ class AuthService extends ChangeNotifier {
   register(BuildContext context, {uname, fname, email, pass}) {
     startloading();
     var formData = FormData.fromMap({
-      'username': uname,
-      'fname': fname,
-      'email': email,
-      'password': pass,
+      "username": uname,
+      "email": email,
+      "full_name": fname,
+      "password": pass,
+      "re_password": pass,
     });
 
     postRequest(
-      url: 'api/v1/auth/jwt/create',
+      url: 'api/v1/auth/users/',
       body: formData,
+      type: 'register',
       onResponse: (response) {
-        AuthModel data = AuthModel.fromJson(response.data);
+        RegisterModel data = RegisterModel.fromJson(response.data);
         stoploading();
-        if (data.detail != null) {
-          AppFunctions().showSnackbar(context, 'Registration successful');
+        if (data.password != null || data.password!.isEmpty) {
+          Navigator.pushNamed(context, loginRoute);
+          AppFunctions().showSnackbar(
+              context, 'Registration successful, kindly login now.');
         } else {
-          AppFunctions().showSnackbar(context, data.detail!);
+          AppFunctions().showSnackbar(context, data.password.toString());
         }
       },
       onError: (resp, {error}) {
         stoploading();
-        AppFunctions().showSnackbar(context, error);
+        String removebrac = resp.message.toString().replaceAll('[', '');
+        String removebrac2 = removebrac.replaceAll(']', '');
+        String removeCurly = removebrac2.replaceAll('{', '');
+        String last = removeCurly.replaceAll('}', '');
+        AppFunctions().showSnackbar(context, last);
       },
     );
   }

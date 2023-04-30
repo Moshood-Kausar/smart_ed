@@ -58,6 +58,7 @@ Future postRequest({
   required void Function(ApiResponse response, {dynamic error}) onError,
   Options? options,
   String? baseUrl,
+  String? type,
 }) async {
   try {
     final result = await InternetAddress.lookup('google.com');
@@ -74,13 +75,16 @@ Future postRequest({
       onError(ApiResponse(message: nointernet, status: false));
     }
   } on DioError catch (e) {
+    // print('this is type $type');
     // print('sfsfs $e');
     // print('this is a new one ${e.response}');
     // print('this is a new one ${e.response!.data}');
     onError(
       ApiResponse(
         message: e.response != null
-            ? "${e.response!.data['detail']}"
+            ? type == 'register'
+                ? "${e.response!.data}"
+                : "${e.response!.data['detail']}"
             : e.message ?? 'An error occured, try again',
         status: false,
       ),
