@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:smart_ed/widget/appcolor.dart';
@@ -14,7 +13,7 @@ class AppTextFormField extends StatelessWidget {
   final IconData? suffixIcon;
   final String? hintText, text, initialValue;
   final bool enable;
-  final int? maxLength;
+  final int? maxLength, maxLines;
 
   const AppTextFormField(
       {Key? key,
@@ -31,7 +30,8 @@ class AppTextFormField extends StatelessWidget {
       this.onChanged,
       this.textInputAction,
       this.textCapitalization,
-      this.initialValue})
+      this.initialValue,
+      this.maxLines})
       : super(key: key);
 
   @override
@@ -52,6 +52,7 @@ class AppTextFormField extends StatelessWidget {
         TextFormField(
           maxLength: maxLength,
           enabled: enable,
+          maxLines: maxLines ?? 1,
           cursorColor: const Color(0xff525252),
           keyboardType: keyboardType,
           textInputAction: textInputAction,
