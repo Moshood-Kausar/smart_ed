@@ -38,7 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^0.13.5
   flutter_inappwebview: ^5.7.2+3
-  flutter_tesseract_ocr: ^0.4.22
+  flutter_tesseract_ocr: any
   image_picker: ^0.8.7+4
   dio: ^5.1.1
   hive_flutter: ^1.1.0
@@ -70,6 +70,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
   - assets/
+  - assets/images/
   - assets/tessdata/
 
   # An image asset can refer to one or more resolution-specific "variants", see
