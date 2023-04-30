@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_ed/utils/approutes.dart';
 import 'package:smart_ed/widget/app_button.dart';
 import 'package:smart_ed/widget/appcolor.dart';
 import 'package:smart_ed/widget/text_form.dart';
@@ -167,12 +168,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: 48.0,
                         child: AppButton(onPressed: () {}, text: 'Sign Up'),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                      const SizedBox(height: 20),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, '/login');
+                          Navigator.pushNamed(context, loginRoute);
                         },
                         child: const Text('Already have an account? Sign In'),
                       ),

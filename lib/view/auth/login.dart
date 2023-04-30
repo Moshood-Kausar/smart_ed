@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_ed/utils/approutes.dart';
 import 'package:smart_ed/widget/app_button.dart';
 import 'package:smart_ed/widget/appcolor.dart';
 
@@ -97,10 +98,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: MediaQuery.of(context).size.width - 20,
                       height: 48.0,
                       child: AppButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/dashboard');
-                          },
-                          text: 'Login'),
+                        onPressed: () {
+                          Navigator.pushNamed(context, dashboardRoute);
+                        },
+                        text: 'Login',
+                      ),
                     ),
                   ],
                 ),
@@ -108,10 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
               const Spacer(),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    '/signup',
-                  );
+                  Navigator.pushNamed(context, signupRoute);
                 },
                 child: const Text('Does not have an account?Sign Up'),
               )

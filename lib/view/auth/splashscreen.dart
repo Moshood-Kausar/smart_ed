@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:smart_ed/utils/approutes.dart';
 import 'package:smart_ed/widget/appcolor.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -13,11 +14,10 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(const Duration(seconds: 3), () {
-      Navigator.pushNamed(context, '/signup');
-    });
-
     super.initState();
+    Timer(const Duration(seconds: 3), () {
+      Navigator.pushNamed(context, signupRoute);
+    });
   }
 
   @override
@@ -29,17 +29,19 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-        Text(
-          'SMART ED',
-          style: TextStyle(
-              fontSize: 40,
-              fontWeight: FontWeight.w500,
-              color: AppColor.primary),
-        ),
-        Text(
-          'Your Study Buddy to Learn and Earn...',
-          style: TextStyle(fontStyle: FontStyle.italic, color: AppColor.grey),
-        ),
+            Text(
+              'SMART ED',
+              style: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.w500,
+                color: AppColor.primary,
+              ),
+            ),
+            Text(
+              'Your Study Buddy to Learn and Earn...',
+              style:
+                  TextStyle(fontStyle: FontStyle.italic, color: AppColor.grey),
+            ),
           ],
         ),
       ),
