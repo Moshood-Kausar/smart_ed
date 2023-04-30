@@ -26,11 +26,13 @@ Future getRequest({
         dio.options.baseUrl = baseUrl;
       }
       final response = await dio.get(url);
+      // print('sfsfs ${response.data}');
       onResponse(response);
     } else {
       onError(ApiResponse(message: nointernet, status: false));
     }
   } on DioError catch (e) {
+    // print('sfsfs $e');
     onError(
       ApiResponse(
         message: e.response != null

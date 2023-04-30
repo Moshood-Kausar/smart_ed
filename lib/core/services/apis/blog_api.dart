@@ -22,7 +22,7 @@ class BlogService extends ChangeNotifier {
     String apikey = '7c760c888117450f9ac628d1e86a7517';
 
     getRequest(
-      url: 'https://newsapi.org/v2/',
+      url: '',
       baseUrl:
           'https://newsapi.org/v2/everything?sortBy=$sort&apiKey=$apikey&searchIn=content&q=$query',
       onResponse: (response) {

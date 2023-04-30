@@ -22,13 +22,13 @@ class _ScholarshipState extends State<Scholarship> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Consumer<BlogService>(
-        builder: (context, snap, child) {
-          if (snap.isLoading && snap.articles == null) {
-            return const CircularProgressIndicator();
-          }
-          return ListView.builder(
+    return Consumer<BlogService>(
+      builder: (context, snap, child) {
+        if (snap.isLoading && snap.articles == null) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        return SingleChildScrollView(
+          child: ListView.builder(
             itemCount: snap.articles!.length,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -133,9 +133,9 @@ class _ScholarshipState extends State<Scholarship> {
                 ),
               );
             },
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
