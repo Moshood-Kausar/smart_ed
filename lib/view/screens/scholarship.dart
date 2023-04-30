@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:smart_ed/services/models/scholarship_model.dart';
+import 'package:smart_ed/core/models/scholarship_model.dart';
 import 'package:smart_ed/utils/widget/appcolor.dart';
 import 'package:smart_ed/utils/widget/webview.dart';
 //import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';

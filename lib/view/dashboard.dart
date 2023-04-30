@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smart_ed/screens/homepage.dart';
-import 'package:smart_ed/screens/learn_earn.dart';
-import 'package:smart_ed/screens/scholarship.dart';
-import 'package:smart_ed/screens/settings.dart';
+import 'package:smart_ed/view/screens/homepage.dart';
+import 'package:smart_ed/view/screens/learn_earn.dart';
+import 'package:smart_ed/view/screens/scholarship.dart';
+import 'package:smart_ed/view/screens/settings.dart';
 import 'package:smart_ed/utils/widget/appcolor.dart';
 
 class DashBoard extends StatefulWidget {

@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:http/http.dart' as http;
 
-import 'package:smart_ed/services/models/scholarship_model.dart';
+import 'package:http/http.dart' as http;
+import 'package:smart_ed/core/models/scholarship_model.dart';
 
 class ApiCall {
   final String _nointernet = "No internet connection";
@@ -12,7 +12,6 @@ class ApiCall {
   static const String apiKey = "7c760c888117450f9ac628d1e86a7517";
   String scholarshipUrl =
       "https://newsapi.org/v2/everything?sortBy=relevancy&apiKey=7c760c888117450f9ac628d1e86a7517&searchIn=content&q=scholarship";
-  
 
   Future<ScholarshipModel> scholarshipApi() async {
     try {
@@ -24,7 +23,7 @@ class ApiCall {
         if (convert.toString().isNotEmpty && response.statusCode == 200) {
           ScholarshipModel scholarshipModel =
               ScholarshipModel.fromJson(convert);
-          
+
           return scholarshipModel;
         }
         return ScholarshipModel.fromJson(jsonDecode(response.body));
