@@ -41,7 +41,11 @@ class AppRouter {
       case onboardingRoute:
         return MaterialPageRoute(builder: (_) => const OnBoarding());
       case quizRoute:
-        return MaterialPageRoute(builder: (_) => const Quiz());
+        return MaterialPageRoute(
+          builder: (_) => Quiz(
+            coursecode: settings.arguments,
+          ),
+        );
       case readRoute:
         return MaterialPageRoute(
           builder: (_) => ReadPage(
