@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +6,6 @@ import 'package:smart_ed/widget/appcolor.dart';
 import 'package:smart_ed/widget/webview.dart';
 
 class Scholarship extends StatefulWidget {
-  
   const Scholarship({super.key});
 
   @override
@@ -18,7 +15,6 @@ class Scholarship extends StatefulWidget {
 class _ScholarshipState extends State<Scholarship> {
   @override
   void initState() {
-   
     super.initState();
     Future.microtask(() {
       context.read<BlogService>().scholarshipApi(context);
@@ -34,7 +30,7 @@ class _ScholarshipState extends State<Scholarship> {
         }
         return Scaffold(
           appBar: AppBar(
-            title: Text(
+            title: const Text(
               'Scholarship',
               style: TextStyle(fontSize: 18),
             ),
@@ -126,7 +122,7 @@ class _ScholarshipState extends State<Scholarship> {
                                       TextSpan(
                                         text:
                                             '• ${snap.articles![index].publishedAt}',
-                                        style: TextStyle(fontSize: 11),
+                                        style: const TextStyle(fontSize: 11),
                                       ),
                                     ],
                                   ),

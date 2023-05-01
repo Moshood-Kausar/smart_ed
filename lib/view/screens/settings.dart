@@ -39,23 +39,23 @@ class _SettingsState extends State<Settings> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text(
+              const Text(
                 'Kally',
                 //style: TextStyle(fontSize: 18),
               ),
-              Text('Kausar Moshood'),
-              Text(
+              const Text('Kausar Moshood'),
+              const Text(
                 'kausarmoshood@gmail.com',
                 style: TextStyle(fontStyle: FontStyle.italic),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Divider(),
-              SizedBox(
+              const Divider(),
+              const SizedBox(
                 height: 10,
               ),
               ListTile(
@@ -70,14 +70,14 @@ class _SettingsState extends State<Settings> {
                       size: 18,
                       color: AppColor.primary,
                     )),
-                title: Text(
+                title: const Text(
                   'Reset Password',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
-                trailing: Icon(Icons.arrow_forward_ios_outlined,
+                trailing: const Icon(Icons.arrow_forward_ios_outlined,
                     size: 18, color: Colors.black),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ListTile(
@@ -89,17 +89,17 @@ class _SettingsState extends State<Settings> {
                       size: 18,
                       color: AppColor.primary,
                     )),
-                title: Text(
+                title: const Text(
                   'Help and Complaints',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
-                trailing: Icon(
+                trailing: const Icon(
                   Icons.arrow_forward_ios_outlined,
                   size: 18,
                   color: Colors.black,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ListTile(
@@ -111,11 +111,11 @@ class _SettingsState extends State<Settings> {
                       size: 18,
                       color: AppColor.primary,
                     )),
-                title: Text(
+                title: const Text(
                   'FAQs',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
-                trailing: Icon(
+                trailing: const Icon(
                   Icons.arrow_forward_ios_outlined,
                   size: 18,
                   color: Colors.black,

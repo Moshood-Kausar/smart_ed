@@ -72,7 +72,7 @@ class _OnBoardingState extends State<OnBoarding> {
                         onPressed: () {
                           setState(() => currentIndex = 2);
                         },
-                        child: Text(
+                        child: const Text(
                           'SKIP',
                           style: TextStyle(
                               color: Colors.black,
@@ -91,7 +91,7 @@ class _OnBoardingState extends State<OnBoarding> {
                   },
                   child: Text(
                     currentIndex == 2 ? '' : 'NEXT',
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.black,
                         fontSize: 12,
                         fontWeight: FontWeight.w600),

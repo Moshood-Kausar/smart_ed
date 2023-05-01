@@ -14,7 +14,7 @@ class _QuizState extends State<Quiz> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Let\'s practice together',
           style: TextStyle(fontSize: 18),
         ),
@@ -23,11 +23,11 @@ class _QuizState extends State<Quiz> {
         padding: const EdgeInsets.all(18.0),
         child: Column(
           children: [
-            Text(
+            const Text(
                 '1. What percentage of the global population between the ages of 15 and 65 used cannabis in 2013?'),
             RadioListTile(
               activeColor: AppColor.primary,
-              title: Text('A. 2.7%'),
+              title: const Text('A. 2.7%'),
               value: 'A. 2.7%',
               groupValue: question,
               onChanged: (value) {
@@ -38,7 +38,7 @@ class _QuizState extends State<Quiz> {
             ),
             RadioListTile(
               activeColor: AppColor.primary,
-              title: Text('B. 4.9%'),
+              title: const Text('B. 4.9%'),
               value: 'B. 4.9%',
               groupValue: question,
               onChanged: (value) {
@@ -49,7 +49,7 @@ class _QuizState extends State<Quiz> {
             ),
             RadioListTile(
               activeColor: AppColor.primary,
-              title: Text('C. 7.2%'),
+              title: const Text('C. 7.2%'),
               value: 'C. 7.2%',
               groupValue: question,
               onChanged: (value) {
@@ -60,7 +60,7 @@ class _QuizState extends State<Quiz> {
             ),
             RadioListTile(
               activeColor: AppColor.primary,
-              title: Text('D. 9.4%'),
+              title: const Text('D. 9.4%'),
               value: 'D. 9.4%',
               groupValue: question,
               onChanged: (value) {
@@ -71,7 +71,7 @@ class _QuizState extends State<Quiz> {
             ),
             RadioListTile(
               activeColor: AppColor.primary,
-              title: Text('E. 11.7%'),
+              title: const Text('E. 11.7%'),
               value: 'E. 11.7%%',
               groupValue: question,
               onChanged: (value) {
