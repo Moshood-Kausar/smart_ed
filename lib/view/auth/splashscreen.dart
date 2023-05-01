@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:smart_ed/utils/approutes.dart';
+import 'package:smart_ed/utils/texts.dart';
 import 'package:smart_ed/widget/appcolor.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,7 +18,12 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushNamed(context, signupRoute);
+      var box = Hive.box(infobox).listenable();
+      String data = box.value.get('username', defaultValue: 'null');
+      Navigator.pushNamed(
+        context,
+        data == 'null' ? signupRoute : dashboardRoute,
+      );
     });
   }
 
