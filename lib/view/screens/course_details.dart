@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_ed/utils/approutes.dart';
 import 'package:smart_ed/widget/app_button.dart';
 
 class CourseDetails extends StatefulWidget {
@@ -38,7 +39,11 @@ class _CourseDetailsState extends State<CourseDetails> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ButtonS(text: 'Read', onPressed: () {}),
-                ButtonS(text: 'Quiz', onPressed: () {}),
+                ButtonS(
+                    text: 'Quiz',
+                    onPressed: () {
+                       Navigator.pushNamed(context,   quizRoute);
+                    }),
               ],
             ),
             SizedBox(

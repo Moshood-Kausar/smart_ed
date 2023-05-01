@@ -14,8 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,8 +60,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 TextButton(
-                  onPressed: (){ 
-                    Navigator.pushNamed(context, newcourseRoute);},
+                  onPressed: () {
+                    Navigator.pushNamed(context, newcourseRoute);
+                  },
                   child: const Text(
                     'Add New +',
                     style: TextStyle(
@@ -75,53 +74,77 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 24,
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, courseRoute);
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(width: 0.5, color: AppColor.grey)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      height: 150,
-                      width: 150,
-                      child: Image.asset('assets/images/book.png'),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text('CPE 403'),
-                            const Text('Introduction to Computer'),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: const [
-                                SizedBox(
-                                  height: 30,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 16,
-                                ),
-                              ],
-                            ),
-                          ],
+
+            // GestureDetector(
+            //   onTap: () {
+            //     Navigator.pushNamed(context, courseRoute);
+            //   },
+            //   child: Container(
+            //     decoration: BoxDecoration(
+            //         border: Border.all(width: 0.5, color: AppColor.grey)),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //       children: [
+            //         Container(
+            //           height: 150,
+            //           width: 150,
+            //           child: Image.asset('assets/images/book.png'),
+            //         ),
+            //         Expanded(
+            //           child: Padding(
+            //             padding: const EdgeInsets.all(8.0),
+            //             child: Column(
+            //               mainAxisAlignment: MainAxisAlignment.start,
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: [
+            //                 const Text('CPE 403'),
+            //                 const Text('Introduction to Computer'),
+            //                 Row(
+            //                   mainAxisAlignment: MainAxisAlignment.end,
+            //                   crossAxisAlignment: CrossAxisAlignment.end,
+            //                   children: const [
+            //                     SizedBox(
+            //                       height: 30,
+            //                     ),
+            //                     Icon(
+            //                       Icons.arrow_forward_ios,
+            //                       size: 16,
+            //                     ),
+            //                   ],
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            Expanded(
+              child: ListView.builder(
+                  itemCount: 20,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, courseRoute);
+                          },
+                          child: ListTile(
+                            leading: CircleAvatar(
+                                child: Container(
+                                    decoration: BoxDecoration(),
+                                    child:Text('C', style: TextStyle(color: Colors.white, fontSize: 22),)),),
+                            title: const Text('CPE 403'),
+                            subtitle: const Text('Introduction to Computer'),
+                            trailing: Icon(Icons.arrow_forward_ios),
+                          ),
                         ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                        Divider()
+                      ],
+                    );
+                  }),
             ),
           ],
         ),
