@@ -13,46 +13,44 @@ class _CourseDetailsState extends State<CourseDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(
-        child: Column(
-          children: [
-            // SizedBox(
-            //   height: 100,
-            // ),
-            Center(
-              child: Image.asset(
-                'assets/images/bookcover.png',
-              ),
+      body: Column(
+        children: [
+          // SizedBox(
+          //   height: 100,
+          // ),
+          Center(
+            child: Image.asset(
+              'assets/images/bookcover.png',
             ),
-            SizedBox(
-              height: 40,
-            ),
-            Text(
-              'CPE 304 - Reasearch Methodology',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-            ),
-            SizedBox(
-              height: 60,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ButtonS(text: 'Read', onPressed: () {}),
-                ButtonS(text: 'Quiz', onPressed: () {}),
-              ],
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ButtonS(text: 'Update', onPressed: () {}),
-                ButtonS(text: 'Delete', onPressed: () {}),
-              ],
-            )
-          ],
-        ),
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          const Text(
+            'CPE 304 - Reasearch Methodology',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(
+            height: 60,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ButtonS(text: 'Read', onPressed: () {}),
+              ButtonS(text: 'Quiz', onPressed: () {}),
+            ],
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ButtonS(text: 'Update', onPressed: () {}),
+              ButtonS(text: 'Delete', onPressed: () {}),
+            ],
+          )
+        ],
       ),
     );
   }

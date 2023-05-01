@@ -3,6 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_tesseract_ocr/flutter_tesseract_ocr.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:smart_ed/core/services/apis/course_api.dart';
+import 'package:smart_ed/widget/app_button.dart';
 import 'package:smart_ed/widget/image_widget.dart';
 import 'package:smart_ed/widget/text_form.dart';
 // import 'package:flutter_tesseract_ocr/flutter_tesseract_ocr.dart';
@@ -33,7 +36,10 @@ class _NewCourseState extends State<NewCourse> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Create Course')),
+      appBar: AppBar(
+        title: const Text('Add Note'),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(18.0),
@@ -73,7 +79,7 @@ class _NewCourseState extends State<NewCourse> {
                       }
                     },
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 25),
                   ImagePickerWidget.imageWidget(images, getImageWidget),
                   if (images.isNotEmpty)
                     TextButton(
@@ -140,16 +146,34 @@ class _NewCourseState extends State<NewCourse> {
                       },
                     ),
                   ),
-                  Center(
-                    child: Text(
-                      _extractText,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  const SizedBox(height: 30),
+                  if (showEdit)
+                    Consumer<CourseService>(
+                      builder: (context, snap, child) {
+                        if (snap.isLoading) {
+                          return const CircularProgressIndicator();
+                        }
+
+                        return SizedBox(
+                          width: MediaQuery.of(context).size.width - 20,
+                          height: 48.0,
+                          child: AppButton(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                snap.createcourse(
+                                  context,
+                                  code: _coursecode!.text,
+                                  content: _extract!.text,
+                                  name: _coursetitle!.text,
+                                );
+                              }
+                            },
+                            text: 'Add Note',
+                          ),
+                        );
+                      },
                     ),
-                  ),
+                  const SizedBox(height: 40),
                 ],
               ),
             ),
