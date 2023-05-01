@@ -25,14 +25,14 @@ class _CourseDetailsState extends State<CourseDetails> {
                 'assets/images/bookcover.png',
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
-            Text(
+            const Text(
               'CPE 304 - Reasearch Methodology',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
             ),
-            SizedBox(
+            const SizedBox(
               height: 60,
             ),
             Row(
@@ -46,7 +46,7 @@ class _CourseDetailsState extends State<CourseDetails> {
                     }),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Row(

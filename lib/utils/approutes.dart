@@ -4,6 +4,7 @@ import 'package:smart_ed/view/auth/onboarding.dart';
 import 'package:smart_ed/view/auth/signup.dart';
 import 'package:smart_ed/view/auth/splashscreen.dart';
 import 'package:smart_ed/view/dashboard.dart';
+import 'package:smart_ed/view/screens/FAQ.dart';
 import 'package:smart_ed/view/screens/course_details.dart';
 import 'package:smart_ed/view/screens/new_course.dart';
 import 'package:smart_ed/view/screens/quiz.dart';
@@ -16,6 +17,7 @@ const String courseRoute = 'coursedetails';
 const String newcourseRoute = 'newcourse';
 const String onboardingRoute = 'onboarding';
 const String quizRoute = 'quiz';
+const String faqRoute = 'faq';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -36,6 +38,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const OnBoarding());
         case quizRoute:
         return MaterialPageRoute(builder: (_) => const Quiz());
+        case faqRoute:
+        return MaterialPageRoute(builder: (_) => const FAQ());
 
       default:
         return MaterialPageRoute(

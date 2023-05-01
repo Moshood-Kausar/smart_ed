@@ -2,7 +2,7 @@ import "package:dio/dio.dart";
 import "package:hive_flutter/hive_flutter.dart";
 import "package:smart_ed/utils/texts.dart";
 
-const String baseUrl = "https://2164-102-176-246-49.ngrok-free.app/";
+const String baseUrl = "https://8424-102-176-246-53.ngrok-free.app";
 
 class Client {
   Dio init() {

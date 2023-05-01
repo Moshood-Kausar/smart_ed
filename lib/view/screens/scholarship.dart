@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +33,7 @@ class _ScholarshipState extends State<Scholarship> {
         }
         return Scaffold(
           appBar: AppBar(
-            title: Text(
+            title: const Text(
               'Scholarship',
               style: TextStyle(fontSize: 18),
             ),
@@ -126,7 +125,7 @@ class _ScholarshipState extends State<Scholarship> {
                                       TextSpan(
                                         text:
                                             '• ${snap.articles![index].publishedAt}',
-                                        style: TextStyle(fontSize: 11),
+                                        style: const TextStyle(fontSize: 11),
                                       ),
                                     ],
                                   ),

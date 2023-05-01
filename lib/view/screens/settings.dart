@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:smart_ed/utils/approutes.dart';
 import 'package:smart_ed/widget/appcolor.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
 
   @override
   State<Settings> createState() => _SettingsState();
+}
+
+_sendingMails() async {
+  var url = Uri.parse("mailto:kausarmoshood@gmail.com");
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url);
+  } else {
+    throw 'Could not launch $url';
+  }
 }
 
 class _SettingsState extends State<Settings> {
@@ -39,23 +50,23 @@ class _SettingsState extends State<Settings> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text(
+              const Text(
                 'Kally',
                 //style: TextStyle(fontSize: 18),
               ),
-              Text('Kausar Moshood'),
-              Text(
+              const Text('Kausar Moshood'),
+              const Text(
                 'kausarmoshood@gmail.com',
                 style: TextStyle(fontStyle: FontStyle.italic),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Divider(),
-              SizedBox(
+              const Divider(),
+              const SizedBox(
                 height: 10,
               ),
               ListTile(
@@ -70,17 +81,18 @@ class _SettingsState extends State<Settings> {
                       size: 18,
                       color: AppColor.primary,
                     )),
-                title: Text(
+                title: const Text(
                   'Reset Password',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
-                trailing: Icon(Icons.arrow_forward_ios_outlined,
+                trailing: const Icon(Icons.arrow_forward_ios_outlined,
                     size: 18, color: Colors.black),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ListTile(
+                onTap: _sendingMails,
                 leading: CircleAvatar(
                     radius: 16,
                     backgroundColor: AppColor.lightblue,
@@ -89,20 +101,23 @@ class _SettingsState extends State<Settings> {
                       size: 18,
                       color: AppColor.primary,
                     )),
-                title: Text(
+                title: const Text(
                   'Help and Complaints',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
-                trailing: Icon(
+                trailing: const Icon(
                   Icons.arrow_forward_ios_outlined,
                   size: 18,
                   color: Colors.black,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ListTile(
+                onTap: () {
+                  Navigator.pushNamed(context, faqRoute);
+                },
                 leading: CircleAvatar(
                     radius: 16,
                     backgroundColor: AppColor.lightblue,
@@ -111,11 +126,11 @@ class _SettingsState extends State<Settings> {
                       size: 18,
                       color: AppColor.primary,
                     )),
-                title: Text(
+                title: const Text(
                   'FAQs',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
-                trailing: Icon(
+                trailing: const Icon(
                   Icons.arrow_forward_ios_outlined,
                   size: 18,
                   color: Colors.black,

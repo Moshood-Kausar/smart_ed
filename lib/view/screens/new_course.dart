@@ -97,7 +97,7 @@ class _NewCourseState extends State<NewCourse> {
                           }
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       _pickedImage == null
@@ -156,8 +156,8 @@ class _NewCourseState extends State<NewCourse> {
                           ? Center(
                               child: Column(
                                 children: [
-                                  CircularProgressIndicator(),
-                                  Text(
+                                  const CircularProgressIndicator(),
+                                  const Text(
                                     'Please wait while we extract the image to text',
                                     style: TextStyle(
                                       fontStyle: FontStyle.italic,
