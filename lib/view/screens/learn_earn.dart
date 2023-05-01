@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:smart_ed/core/services/apis/course_api.dart';
 import 'package:smart_ed/utils/approutes.dart';
 import 'package:smart_ed/widget/appcolor.dart';
 
@@ -29,66 +31,90 @@ class _LearnToEarnState extends State<LearnToEarn> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [Text('Points gained'), Text('20%')],
             ),
-            const SizedBox(
-              height: 5,
-            ),
+            const SizedBox(height: 5),
             LinearProgressIndicator(
               value: 0.2,
               valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
               backgroundColor: AppColor.lightblue,
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             Expanded(
-              child: ListView.builder(
-                  itemCount: 20,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, courseRoute);
-                          },
-                          child: const ListTile(
-                            title: Text('CPE 403'),
-                            subtitle: Text('Introduction to Computer'),
-                            trailing: Icon(Icons.arrow_forward_ios),
-                          ),
+              child: Consumer<CourseService>(
+                builder: (context, snap, child) {
+                  if (snap.isLoading && snap.list.isEmpty) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  if (snap.list.isEmpty) {
+                    return Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(18.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('assets/images/empty.png'),
+                            const Text('Add new notes to learn and earn'),
+                            const SizedBox(height: 20),
+                            TextButton(
+                              child: Text(
+                                'Add New Note +',
+                                style: TextStyle(color: AppColor.primary),
+                              ),
+                              onPressed: () {
+                                Navigator.pushNamed(context, newcourseRoute);
+                              },
+                            ),
+                          ],
                         ),
-                        const Divider()
-                      ],
+                      ),
                     );
-                  }),
+                  }
+                  return ListView.builder(
+                    itemCount: snap.list.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, courseRoute);
+                            },
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                child: Container(
+                                  decoration: const BoxDecoration(),
+                                  child: Text(
+                                    snap.list[index]['course_code'][0],
+                                    style: const TextStyle(
+                                      color: Colors.blue,
+                                      fontSize: 22,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              title: Text(snap.list[index]['course_code']),
+                              subtitle: Text(snap.list[index]['name']),
+                              trailing: const Icon(Icons.arrow_forward_ios),
+                            ),
+                          ),
+                          const Divider()
+                        ],
+                      );
+                    },
+                  );
+                },
+              ),
             ),
           ],
         ),
       ),
     );
-    // return Center(
-    //   child: Padding(
-    //     padding: const EdgeInsets.all(18.0),
-    //     child: Column(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       children: [
-    //         Image.asset('assets/images/empty.png'),
-    //         Text('Add new notes to learn and earn'),
-    //         SizedBox(
-    //           height: 20,
-    //         ),
-    //         TextButton(
-    //           child: Text(
-    //             'Add New Note +',
-    //             style: TextStyle(color: AppColor.primary),
-    //           ),
-    //           onPressed: () {
-    //             Navigator.pushNamed(context, newcourseRoute);
-    //           },
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() {
+      context.read<CourseService>().courselist(context);
+    });
   }
 }

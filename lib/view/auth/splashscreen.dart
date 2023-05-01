@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
       String data = box.value.get('username', defaultValue: 'null');
       Navigator.pushNamed(
         context,
-        data == 'null' ? signupRoute : dashboardRoute,
+        data == 'null' ? onboardingRoute : dashboardRoute,
       );
     });
   }

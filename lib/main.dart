@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           colorSchemeSeed: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: onboardingRoute,
+        initialRoute: splashRoute,
         onGenerateRoute: AppRouter.generateRoute,
       ),
     );

@@ -27,13 +27,15 @@ Future getRequest({
         dio.options.baseUrl = baseUrl;
       }
       final response = await dio.get(url);
-      // print('sfsfs ${response.data}');
+      log('sfsfs ${response.data}');
       onResponse(response);
     } else {
       onError(ApiResponse(message: nointernet, status: false));
     }
   } on DioError catch (e) {
-    // print('sfsfs $e');
+    log('sfsfs $e');
+    log('this is a new one ${e.response}');
+    log('this is a new one ${e.response!.data}');
     onError(
       ApiResponse(
         message: e.response != null
@@ -48,6 +50,7 @@ Future getRequest({
   } on TimeoutException catch (_) {
     onError(ApiResponse(message: timeMsg, status: false));
   } catch (e) {
+    log('catch $e');
     onError(ApiResponse(message: msg, status: false), error: e);
   }
 }
