@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:smart_ed/utils/approutes.dart';
 import 'package:smart_ed/utils/texts.dart';
 import 'package:smart_ed/widget/appcolor.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -12,6 +13,15 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  _sendingMails() async {
+    var url = Uri.parse("mailto:kausarmoshood@gmail.com");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,18 +92,22 @@ class _SettingsState extends State<Settings> {
                     ),
                     const SizedBox(height: 10),
                     ListTile(
+                      onTap: _sendingMails,
                       leading: CircleAvatar(
-                          radius: 16,
-                          backgroundColor: AppColor.lightblue,
-                          child: Icon(
-                            Icons.call,
-                            size: 18,
-                            color: AppColor.primary,
-                          )),
+                        radius: 16,
+                        backgroundColor: AppColor.lightblue,
+                        child: Icon(
+                          Icons.call,
+                          size: 18,
+                          color: AppColor.primary,
+                        ),
+                      ),
                       title: const Text(
                         'Help and Complaints',
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w600),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       trailing: const Icon(
                         Icons.arrow_forward_ios_outlined,
@@ -103,14 +117,18 @@ class _SettingsState extends State<Settings> {
                     ),
                     const SizedBox(height: 10),
                     ListTile(
+                      onTap: () {
+                        Navigator.pushNamed(context, faqRoute);
+                      },
                       leading: CircleAvatar(
-                          radius: 16,
-                          backgroundColor: AppColor.lightblue,
-                          child: Icon(
-                            Icons.message,
-                            size: 18,
-                            color: AppColor.primary,
-                          )),
+                        radius: 16,
+                        backgroundColor: AppColor.lightblue,
+                        child: Icon(
+                          Icons.message,
+                          size: 18,
+                          color: AppColor.primary,
+                        ),
+                      ),
                       title: const Text(
                         'FAQs',
                         style: TextStyle(
