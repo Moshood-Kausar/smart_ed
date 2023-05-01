@@ -3,7 +3,8 @@ import 'package:smart_ed/utils/approutes.dart';
 import 'package:smart_ed/widget/app_button.dart';
 
 class CourseDetails extends StatefulWidget {
-  const CourseDetails({super.key});
+  final dynamic data;
+  const CourseDetails({super.key, this.data});
 
   @override
   State<CourseDetails> createState() => _CourseDetailsState();
@@ -24,30 +25,31 @@ class _CourseDetailsState extends State<CourseDetails> {
               'assets/images/bookcover.png',
             ),
           ),
-          const SizedBox(
-            height: 40,
+          const SizedBox(height: 40),
+          Text(
+            '${widget.data['course_code']} - ${widget.data['name']}',
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
           ),
-          const Text(
-            'CPE 304 - Reasearch Methodology',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-          ),
-          const SizedBox(
-            height: 60,
-          ),
+          const SizedBox(height: 60),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              ButtonS(text: 'Read', onPressed: () {}),
               ButtonS(
-                  text: 'Quiz',
-                  onPressed: () {
-                    Navigator.pushNamed(context, quizRoute);
-                  }),
+                text: 'Read',
+                onPressed: () {
+                  Navigator.pushNamed(context, readRoute,
+                      arguments: widget.data['content']);
+                },
+              ),
+              ButtonS(
+                text: 'Quiz',
+                onPressed: () {
+                  Navigator.pushNamed(context, quizRoute);
+                },
+              ),
             ],
           ),
-          const SizedBox(
-            height: 40,
-          ),
+          const SizedBox(height: 40),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [

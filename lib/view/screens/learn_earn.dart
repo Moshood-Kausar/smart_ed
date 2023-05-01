@@ -76,7 +76,7 @@ class _LearnToEarnState extends State<LearnToEarn> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Navigator.pushNamed(context, courseRoute);
+                              Navigator.pushNamed(context, courseRoute, arguments: snap.list[index]);
                             },
                             child: ListTile(
                               leading: CircleAvatar(
