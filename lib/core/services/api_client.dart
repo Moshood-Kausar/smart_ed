@@ -1,6 +1,8 @@
 import "package:dio/dio.dart";
+import "package:hive_flutter/hive_flutter.dart";
+import "package:smart_ed/utils/texts.dart";
 
-const String baseUrl = "base_url";
+const String baseUrl = "https://8424-102-176-246-53.ngrok-free.app/";
 
 class Client {
   Dio init() {
@@ -17,9 +19,11 @@ class ApiInterceptors extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    // get hive data
-
-    options.headers['Authorization'] = 'Bearer user-accessToken ';
+    var box = Hive.box(infobox).listenable();
+    String accessToken = box.value.get('access', defaultValue: 'defaultvalue');
+    if (accessToken != 'defaultvalue') {
+      options.headers['Authorization'] = 'Bearer $accessToken';
+    }
 
     return handler.next(options);
   }
@@ -31,14 +35,15 @@ class ApiInterceptors extends Interceptor {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) async {
-    /// get hive data
-    if (err.response?.statusCode == 401) {
+    var box = Hive.box(infobox).listenable();
+    String accessToken = box.value.get('access', defaultValue: 'default value');
+    if (err.response?.statusCode == 402) {
       final options = err.response!.requestOptions;
 
       final tokenResult = await tokenDio.post(
-        '${baseUrl}authtoken',
+        '${baseUrl}referesh-token',
         options: Options(
-          headers: {'Authorization': 'Bearer user-accessToken'},
+          headers: {'Authorization': 'Bearer $accessToken'},
         ),
       );
 
@@ -47,11 +52,9 @@ class ApiInterceptors extends Interceptor {
         final body = tokenResult.data as Map<String, dynamic>;
 
         if (body['status']) {
-          /// save new access token
-          // await UserDB().saveuserInfo(
-          //   user.copyWith(accessToken: body['accessToken']),
-          // );
-          options.headers['Authorization'] = "Bearer ${body['accessToken']}";
+          box.value.put('access', body['access']);
+
+          options.headers['Authorization'] = "Bearer ${body['access']}";
           final originResult = await _dio.fetch(options);
           if (originResult.statusCode != null &&
               originResult.statusCode! ~/ 100 == 2) {

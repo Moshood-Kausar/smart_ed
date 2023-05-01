@@ -3,12 +3,13 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_ed/core/providers/provider_list.dart';
 import 'package:smart_ed/utils/approutes.dart';
+import 'package:smart_ed/utils/texts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter();
-  await Hive.openBox('infoBox');
+  await Hive.openBox(infobox);
 
   runApp(const MyApp());
 }

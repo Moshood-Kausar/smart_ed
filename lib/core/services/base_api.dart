@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -26,13 +27,15 @@ Future getRequest({
         dio.options.baseUrl = baseUrl;
       }
       final response = await dio.get(url);
-      // print('sfsfs ${response.data}');
+      log('sfsfs ${response.data}');
       onResponse(response);
     } else {
       onError(ApiResponse(message: nointernet, status: false));
     }
   } on DioError catch (e) {
-    // print('sfsfs $e');
+    log('sfsfs $e');
+    log('this is a new one ${e.response}');
+    log('this is a new one ${e.response!.data}');
     onError(
       ApiResponse(
         message: e.response != null
@@ -47,6 +50,7 @@ Future getRequest({
   } on TimeoutException catch (_) {
     onError(ApiResponse(message: timeMsg, status: false));
   } catch (e) {
+    log('catch $e');
     onError(ApiResponse(message: msg, status: false), error: e);
   }
 }
@@ -58,6 +62,7 @@ Future postRequest({
   required void Function(ApiResponse response, {dynamic error}) onError,
   Options? options,
   String? baseUrl,
+  String? type,
 }) async {
   try {
     final result = await InternetAddress.lookup('google.com');
@@ -68,19 +73,25 @@ Future postRequest({
         dio.options.baseUrl = baseUrl;
       }
       final response = await dio.post(url, data: body, options: options);
-
+      // print('sfsfs ${response.data}');
       onResponse(response);
     } else {
       onError(ApiResponse(message: nointernet, status: false));
     }
   } on DioError catch (e) {
+    log('this is type $type');
+    log('sfsfs $e');
+    log('this is a new one ${e.response}');
+    log('this is a new one ${e.response!.data}');
     onError(
       ApiResponse(
-        message: !e.response!.data.contains('html')
-            ? e.response != null
-                ? "${e.response!.data['message']}"
-                : e.message ?? 'An error occured, try again'
-            : "An error occured, try again",
+        message: e.response != null
+            ? type == 'register'
+                ? e.response!.data.contains('html')
+                    ? 'An error occured.'
+                    : "${e.response!.data}"
+                : "${e.response!.data['detail']}"
+            : e.message ?? 'An error occured, try again',
         status: false,
       ),
       error: e,

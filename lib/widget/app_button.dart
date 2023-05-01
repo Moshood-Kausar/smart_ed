@@ -35,7 +35,6 @@ class AppButton extends StatelessWidget {
     );
   }
 }
-
 class ButtonS extends StatelessWidget {
   final String text;
   final void Function() onPressed;
@@ -71,3 +70,4 @@ class ButtonS extends StatelessWidget {
     );
   }
 }
+
