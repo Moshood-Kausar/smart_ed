@@ -7,12 +7,17 @@ class ReadPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Text(
-          '$content',
-          style: const TextStyle(fontSize: 22),
+      appBar: AppBar(
+        title: const Text('Read'),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            '$content',
+            style: const TextStyle(fontSize: 18),
+          ),
         ),
       ),
     );

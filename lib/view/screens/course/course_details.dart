@@ -44,7 +44,8 @@ class _CourseDetailsState extends State<CourseDetails> {
               ButtonS(
                 text: 'Quiz',
                 onPressed: () {
-                  Navigator.pushNamed(context, quizRoute);
+                  Navigator.pushNamed(context, quizRoute,
+                      arguments: widget.data['course_code']);
                 },
               ),
             ],
